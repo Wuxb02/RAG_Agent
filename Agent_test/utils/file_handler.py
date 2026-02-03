@@ -4,7 +4,7 @@
 
 import os
 import hashlib
-from logger_handle import logger
+from utils.logger_handle import logger
 from langchain_core.documents import Document
 from langchain_community.document_loaders import PyPDFLoader,TextLoader
 
@@ -41,7 +41,7 @@ def listdit_with_allowed_type(path:str, allowed_type:tuple[str]):
     返回文件列表
     '''
     files = []
-    if not os.path.isdir():
+    if not os.path.isdir(path):
         logger.error(f"[listdit_with_allowed_type]： 当前{path}非文件夹")
         return allowed_type
 
@@ -51,7 +51,7 @@ def listdit_with_allowed_type(path:str, allowed_type:tuple[str]):
     return tuple(files) #不允许修改
 
 
-def pdf_loader(filepath: str, password:str) -> list[Document]:
+def pdf_loader(filepath: str, password:str = None) -> list[Document]:
     '''
     读取pdf
     '''
@@ -61,4 +61,4 @@ def txt_loader(filepath: str) -> list[Document]:
     '''
     读取txt
     '''
-    return TextLoader(filepath).load()
+    return TextLoader(filepath, encoding='utf-8').load()

@@ -2,9 +2,9 @@
 Agent_test.utils.prompt_loader 的 Docstring
 '''
 
-from config_handler import prompts_conf
-from path_tools import get_abs_path
-from logger_handle import logger
+from utils.config_handler import prompts_conf
+from utils.path_tools import get_abs_path
+from utils.logger_handle import logger
 
 def load_system_prompts():
     try:
