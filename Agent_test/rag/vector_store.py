@@ -1,5 +1,5 @@
 '''
-Agent_test.rag.vector_store 的 Docstring
+rag.vector_store 的 Docstring
 '''
 import os
 from langchain_chroma import Chroma
@@ -7,7 +7,7 @@ from utils.config_handler import chroma_conf
 from utils.path_tools import get_abs_path
 from utils.file_handler import txt_loader, pdf_loader, listdit_with_allowed_type, get_file_md5_hex
 
-from utils.logger_handle import logger
+from utils.logger_handler import logger
 from model.factory import embed_model
 
 from langchain_text_splitters import RecursiveCharacterTextSplitter
