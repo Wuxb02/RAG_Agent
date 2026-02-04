@@ -44,6 +44,7 @@ def get_logger(
         log_file = os.path.join(LOG_ROOT, f"{name}_{datetime.now().strftime('%Y%m%d_%H%M%S')}.log")
     file_handler = logging.FileHandler(log_file, encoding='utf-8')
     file_handler.setLevel(file_level)
+    file_handler.setFormatter(DEFAULT_LOG_FORMAT)
 
     logger.addHandler(console_handler)
     logger.addHandler(file_handler)

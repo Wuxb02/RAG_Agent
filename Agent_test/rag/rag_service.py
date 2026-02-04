@@ -21,10 +21,12 @@ class RagSummarizeService(object):
         self.chain = self._init_chain()
 
     def _init_chain(self):
-        def temp(values) :
-            print('temp',values.to_string())
+        def print_prompt(values) :
+            print('='*10 + 'prompt' + '='*10)
+            print(values.to_string())
+            print('='*20)
             return values
-        chain = self.prompt_template | temp | self.model | StrOutputParser()
+        chain = self.prompt_template | print_prompt | self.model | StrOutputParser()
         return chain
     
     def retriever_docs(self,query:str) -> list[Document]:
@@ -38,7 +40,7 @@ class RagSummarizeService(object):
         counter = 0
         for doc in context_docs:
             counter+=1
-            context +=f"\n\n【参考资料{counter}】: 参考内容：{doc.page_content} | 元数据：{doc.metadata}"
+            context +=f"\n【参考资料{counter}】: 参考内容：{doc.page_content} | 元数据：{doc.metadata}"
         
         return self.chain.invoke({
             "input":  query,
